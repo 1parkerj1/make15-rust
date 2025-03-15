@@ -1,9 +1,9 @@
-use crate::Card;
-use super::card::Suit;
 use super::card::Rank;
+use super::card::Suit;
+use crate::Card;
 
-use rand::seq::SliceRandom;
 use rand::rng;
+use rand::seq::SliceRandom;
 
 use strum::IntoEnumIterator;
 
@@ -12,7 +12,6 @@ pub struct Deck {
 }
 
 impl Deck {
-
     // construct the deck_cards vec
     pub fn new(decknum: i32) -> Self {
         let mut deck = Self {
@@ -39,8 +38,8 @@ impl Deck {
                 for rank in Rank::iter() {
                     deck.push(Card::new(rank, suit));
                 }
-            } 
-            i+=1;
+            }
+            i += 1;
         }
         return deck;
     }
@@ -51,7 +50,13 @@ impl Deck {
             card.to_string();
         }
     }
+
+    pub fn show_topcard(&self) {
+        if let Some(top_card) = &self.deck_cards.last() {
+            print!("top card: ");
+            top_card.to_string();
+        } else {
+            println!("the deck is empty!");
+        }
+    }
 }
-
-
-
