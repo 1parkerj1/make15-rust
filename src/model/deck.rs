@@ -26,10 +26,6 @@ impl Deck {
         self.deck_cards.shuffle(&mut rng);
     }
 
-    pub fn draw(&mut self) -> Option<Card> {
-        self.deck_cards.pop()
-    }
-
     pub fn create_deck(decknum: i32) -> Vec<Card> {
         let mut i = 0;
         let mut deck = Vec::with_capacity((52 * decknum) as usize);
@@ -41,7 +37,11 @@ impl Deck {
             }
             i += 1;
         }
-        return deck;
+        deck
+    }
+
+    pub fn draw(&mut self) -> Option<Card> {
+        self.deck_cards.pop()
     }
 
     pub fn show_deckcards(&self) {
